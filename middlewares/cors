@@ -1,0 +1,19 @@
+import { Request, Response } from 'express'
+
+export default function (req: Request, res: Response) {
+    res.set('Access-Control-Allow-Origin', '*')
+    if (req.method === 'OPTIONS') {
+        // Send response to OPTIONS requests
+        res.set('Access-Control-Allow-Methods', 'GET, POST')
+        res.set(
+            'Access-Control-Allow-Headers',
+            'Content-Type, Red-Middleware-Token'
+        )
+        res.set('Access-Control-Max-Age', '3600')
+        res.status(204).send('')
+
+        return false
+    } else {
+        return true
+    }
+}
